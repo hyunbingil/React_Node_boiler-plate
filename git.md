@@ -49,3 +49,5 @@
 #### 6. github에 넣어주기
 : settings에 들어가서 SSH 메뉴 눌러서 NEW에 들어가서 복사한 거 넣어주기!
 #### 7. repository랑 연결하기
+: ```git init```\
+: ```git remote add origin 주소```
