@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 const { User } = require('./models/User');
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://hyunbingil:<password>@hyunbingil-cveab.mongodb.net/test?retryWrites=true&w=majority',{
+mongoose.connect('mongodb+srv://hyunbingil:rnrtod1820@hyunbingil-cveab.mongodb.net/test?retryWrites=true&w=majority',{
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -20,10 +20,10 @@ mongoose.connect('mongodb+srv://hyunbingil:<password>@hyunbingil-cveab.mongodb.n
 }).then(() => console.log('MongoDB Connected...')) // 에러가 안뜨게 하기위해 써준다!
   .catch(err => console.log(err))
 
-app.get('/', (req, res) => res.send('Hello World!')) // hello world 출력하는 get을 이용한 route
+app.get('/', (req, res) => res.send('잠이와..요')) // hello world 출력하는 get을 이용한 route
 
 app.post('/register', (req, res) => {
-  // 회원 가입 할 때 필요한 정보들을 client에서 가져오면, 그것들을 데이터 베이스에 ㄴ허어준다.
+  // 회원 가입 할 때 필요한 정보들을 client에서 가져오면, 그것들을 데이터 베이스에 넣어준다.
 
     const user = new User(req.body)
     // request body안에 정보들이 들어있는 것.
