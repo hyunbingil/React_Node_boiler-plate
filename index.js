@@ -3,6 +3,8 @@ const app = express() // 새로운 express 앱을 만든다.
 const port = 5000 // 포트 설정
 const bodyParser = require('body-parser');
 
+const config = require('./config/key');
+
 // bodyParser가 client에서 오는 정보를 서버에서 분석해서 가져올 수 있게 하는 것이라고 했는데,
 // 이 부분은 appliation/x-www-form-urlencoded 으로 되어있는 데이터를 분석해서 가져올 수 있게 하주기 위한 조건
 app.use(bodyParser.urlencoded({extended: true}));
@@ -12,7 +14,7 @@ app.use(bodyParser.json());
 const { User } = require('./models/User');
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://hyunbingil:rnrtod1820@hyunbingil-cveab.mongodb.net/test?retryWrites=true&w=majority',{
+mongoose.connect(config.mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

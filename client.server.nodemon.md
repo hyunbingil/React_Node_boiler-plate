@@ -55,3 +55,11 @@ app.post('/register', (req, res) => {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
 ```
+
+## 개발할 때 두가지 환경에서 할 수 있음
+### Local 환경
+: development 모드\
+=> mongoDB uri를 dev.js에서 가져오게 한다.
+### Deploy(배포) 한 후
+: heeroku나 클라우드 서비스를 이용해서 배포한 후, production 모드\
+=> heroku 사이트 자체에서 mongoDB uri를 넣어서 가져오게 해야한다.
