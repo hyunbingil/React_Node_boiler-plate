@@ -31,6 +31,7 @@ app.post('/register', (req, res) => {
     // request body안에 정보들이 들어있는 것.
     // bodyParser가 있기 때문에 여기 들어 있을 수 있음.
     
+    // save 전에 비밀번호 암호화 시켜야한다.
     user.save((err, doc) => {
       if(err) return res.json({success: false, err}) // json 형식으로 에러 전달.
       return res.status(200).json({
