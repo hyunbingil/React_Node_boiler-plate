@@ -49,9 +49,20 @@ userSchema.pre('save', function(next){
                 next()
             });
         });
-        
+    } else {
+        next()
     }
 }) // 'save'하기 전에 무언가를 한다. mongoose에서 가져온 method인 pre
+
+userSchema.methods.comparePassword = function(plainPassword, cb) {
+    //plainPassword 1234567 암호화된 비밀번호 ~~~~가 같은지 비교하려면 plainPassword를 암호화한 후에 비교한다.
+    bcrypt.compare(plainPassword, this.password, function(err, isMatch) {
+        if(err) return cb(err),
+            cb(null, isMatch)
+
+    })
+
+}
 
 const User = mongoose.model('User', userSchema) // 유저이름과, 스키마 넣어주기
 

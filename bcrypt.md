@@ -23,3 +23,9 @@ serSchema.pre('save', function(next){
     next()
 }) // 'save'하기 전에 무언가를 한다. mongoose에서 가져온 method인 pre
 ```
+
+## 로그인 기능 만들기
+### login route 만들기
+1. 데이터 베이스에서 요청한 E-mail 찾기
+2. 데이터 베이스에서 요청한 E-mail이 있다면 비밀번호가 같은지 확인
+3. 비밀번호까지 같다면 Token 생성
