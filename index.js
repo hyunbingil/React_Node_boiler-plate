@@ -2,6 +2,7 @@ const express = require('express') // express 모듈 가져오기
 const app = express() // 새로운 express 앱을 만든다.
 const port = 5000 // 포트 설정
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 const config = require('./config/key');
 
@@ -10,6 +11,7 @@ const config = require('./config/key');
 app.use(bodyParser.urlencoded({extended: true}));
 // 이 부분은 appliation/json 으로 되어있는 데이터를 분석해서 가져올 수 있게 하주기 위한 조건
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 const { User } = require('./models/User');
 
@@ -56,7 +58,13 @@ app.post('./login', (req, res) => {
       
       // 비밀번호까지 맞을 경우, 토큰을 생성한다.
       user.generateToken((err, user) => {
+        if(err) return res.status(400).send(err);
         
+        // 토큰을 저장한다. 어디에? 쿠키, 로컬스토리지에서 저장이 가능하다.
+        res.cookie("x_auth", user.token)
+        .status(200)
+        .json({loginSuccess: true, userId: user._id})
+
       })
     })// User.js에서 만들어준다
 

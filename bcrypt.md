@@ -28,4 +28,16 @@ serSchema.pre('save', function(next){
 ### login route 만들기
 1. 데이터 베이스에서 요청한 E-mail 찾기
 2. 데이터 베이스에서 요청한 E-mail이 있다면 비밀번호가 같은지 확인
-3. 비밀번호까지 같다면 Token 생성
+3. 비밀번호까지 같다면 Token 생성\
+: JSONWEBTOKEN이라는 라이브러리를 다운로드해서 만들자.
+```
+npm install jsonwebtoken --save
+```
+https://www.npmjs.com/package/jsonwebtoken
+4. token을 쿠키에 저장하기\
+: 라이브러리 다운하자.
+```
+npm install cookie-parser --save
+```
+
+
