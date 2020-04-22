@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 const { User } = require('./models/User');
+const { auth } = require('./middleware/auth');
 
 const mongoose = require('mongoose')
 mongoose.connect(config.mongoURI, {
@@ -26,7 +27,7 @@ mongoose.connect(config.mongoURI, {
 
 app.get('/', (req, res) => res.send('잠이와..요')) // hello world 출력하는 get을 이용한 route
 
-app.post('/register', (req, res) => {
+app.post('/api/users/register', (req, res) => {
   // 회원 가입 할 때 필요한 정보들을 client에서 가져오면, 그것들을 데이터 베이스에 넣어준다.
 
     const user = new User(req.body)
@@ -42,7 +43,7 @@ app.post('/register', (req, res) => {
     }) // mongo DB 메소드
   }) // callback function인 req, res
 
-app.post('./login', (req, res) => {
+app.post('/api/users/login', (req, res) => {
   // 요청된 이메일을 데이터 베이스에서 찾는다.
   User.findOne({email: req.body.email}, (err, user) => {
     if(!user){
@@ -69,6 +70,34 @@ app.post('./login', (req, res) => {
     })// User.js에서 만들어준다
 
   }) // mongoDB에서 제공하는 method인 findOne
+})
+
+app.get('/api/users/auth', auth, (req, res) => {
+  // 여기까지 미들웨어를 통과해 왔다는 얘기는 Authentication이 True라는 말
+  // (미들웨어는 중간에 auth부분! auth.js에서 성공해서 next 받아서 여기로왔다는 얘기)
+  res.status(200).json({
+    // 유저 정보들 제공해주기 -> 다 전달할 필요 X. 선택해서 제공해도 된다.
+    _id: req.user._id,
+    isAdmin: req.user.role === 0 ? false : true,
+    isAuth: true,
+    email: req.user.email,
+    name: req.user.name,
+    lastname: req.user.lastname,
+    role: req.user.role,
+    image: req.user.imgae
+
+  })
+})
+
+app.get('/api/users/logout', auth, (req, res) => {
+  User.findOneAndUpdate({ _id: req.user._id }, 
+    { token: "" },
+    (err, user) => {
+      if(err) return res.json({ success:false, err });
+      return res.status(200).send({
+        success: true
+      })
+    })
 })
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
