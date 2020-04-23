@@ -39,7 +39,7 @@ app.post('/register', (req, res) => {
 ```
 #### 4. npm run start로 실행시켜주고, POSTMAN을 이용해 회원가입해보기
 - 설정 후 실행
-<img src='./postman_settings.PNG'>
+<img src='/postman_settings.PNG'>
 
 ## NODE MON
 : 서버를 내리고 오리지 않아도 소스를 변경할 때 그것을 감지해서 자동으로 서버를 재시작해주는 tool
