@@ -70,4 +70,46 @@ ReactDOM.render(
 : 이 부분은 webpack이 관리
 > 그래서 넣고 싶은 이미지 같은 것들은 여기에 넣어줘야 적용이 가능하다.
 #### public
-: webpack 관리 X.
+: webpack 관리 X.\
+=> 여기에 쓰인 파일은 오직 public/index.html만 쓰일 수 있다.
+
+## Boiler Plate에 특성화된 구조 설정하기
+### 원래 Create React App 구조
+```
+my-app/
+  README.md
+  node_modules/
+  package.json
+  public/
+    index.html
+    favicon.ico
+  src/
+    App.css
+    App.js
+    App.test.js
+    index.css
+    index.js
+    logo.svg
+```
+### Boiler Plate에 특성화된 구조
+: src 폴더 부분을 많이 바꾼다.
+<img src="./img/boiler_plate.PNG">
+
+### HOC
+: 다른 컴포넌트를 갖는 함수이다.\
+: 자동적으로 HOC가 자격(예시)을 판단해서 다음 액션을 취할 수 있도록 해준다.
+> 자격말구 다른 것도 가능하다.
+``` js
+const EnhancedComponent = higherOrderComponent(WrappedComponent);
+```
+<img src='./img/hoc.PNG'>
+
+### 🍯꿀팁
+#### 1. ES7 React/Redux/GraphQL/React-Native snippets 확장
+- rce : class component 생성
+- rafce : allow function component 생성
+- rfce : function component 생성
+
+## React Router DOM
+: 페이지간의 이동을 할 때 사용한다.\
+: https://reacttraining.com/react-router/web/example/basic

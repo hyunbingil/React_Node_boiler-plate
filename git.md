@@ -12,7 +12,7 @@
 : ```git commit```을 하면 저장소에 올라간다.\
 4)) Git repository(REMOTE)\
 : ```git push```를 해서 github에 올리기!
-<img src = './git_status.PNG'>
+<img src = '/img/git_status.PNG'>
 
 ### 🍯꿀팁🍯: .gitignore
 1. add 전에 무시하는 방법\

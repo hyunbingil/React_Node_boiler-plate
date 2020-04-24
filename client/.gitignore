@@ -23,4 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 
 /public/
-/src/
+/src/App.css
+/src/index.css
+/src/index.js
+/src/serviceWorker.js
+/src/setupTests.js
