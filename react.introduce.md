@@ -93,6 +93,7 @@ my-app/
 ```
 ### Boiler Plate에 특성화된 구조
 : src 폴더 부분을 많이 바꾼다.
+
 <img src="./img/boiler_plate.PNG">
 
 ### HOC
@@ -110,6 +111,98 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 - rafce : allow function component 생성
 - rfce : function component 생성
 
-## React Router DOM
+### React Router DOM
 : 페이지간의 이동을 할 때 사용한다.\
 : https://reacttraining.com/react-router/web/example/basic
+
+## React vs React Hooks
+### React Component
+#### Class Component
+: 더 많은 기능 사용 가능.\
+: 코드가 좀 더 길고, 복잡하다.\
+: 성능적인면에서 조금 느리다.
+``` js
+import React, { Component } from 'react';
+
+export default class Hello extends Component {
+  render() {
+    return (
+      <div>
+        I want bubble tea!
+      </div>
+    )
+  }
+}
+```
+
+#### Functional Component
+: 제공하는 기능들이 한정적이다.\
+: 코드가 짧고, 간단하다.\
+: 성능적인면에서 class component보다 빠르다.
+``` js
+import React from 'react';
+
+export default function Hello() {
+  return (
+    <div>
+      I want bubble tea!
+    </div>
+  )
+}
+```
+
+#### lifecycle
+: class component에서는 되고, functional component에서는 되지 않았던 기능.
+<img src='./img/lifecycle.PNG'>
+
+### Hooks의 등장
+: functional component에서도 이러한 기능을 쓸 수 있게 되었다!
+- Class
+``` js
+import React, { Component } from 'react';
+import Axios from 'axios';
+
+export default class Hello extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { name: "" };
+  }
+
+  componentDidMount() { // lifecycle
+    Axios.get('/api/user/name')
+      .then(response => {
+        this.setState({ name: response.data.name })
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        My name is {this.state.name}
+      </div>
+    )
+  }
+}
+```
+- Hooks
+``` js
+import React, { useEffect, useState } from 'react';
+import Axios from 'axios';
+
+export default function Hello() {
+  const [Name, setName] = useState("");
+
+  useEffect(() => { //componentDidMount 기능...
+    Axios.get('/api/user/name')
+      .then(response => {
+        setName(response.data.name)
+      })
+  }, [])
+
+  return (
+    <div>
+      My name is {Name}
+    </div>  
+  )
+}
+```

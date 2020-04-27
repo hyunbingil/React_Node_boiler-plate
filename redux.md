@@ -28,7 +28,7 @@ state = {
 
 ### Redux 데이터 Flow(strict undirectional data flow)
 : 한 방향으로만 흐른다.
-<img src='./redux_flow.PNG'>
+<img src='./img/redux_flow.PNG'>
 
 #### Action
 : 객체를 이용
@@ -54,6 +54,42 @@ state = {
 1. redux
 2. react-redux
 #### redux middleware
-: redux를 잘 쓰게 위해서 사용한다.
-1. redux-promise
-2. redux-thunk
+: redux를 잘 쓸 수 있게 하는 역할.
+1. redux-promise\
+: dispatch가 promise가 왔을 때 어떻게 대처해야하는지 알려준다.
+2. redux-thunk\
+: dispatch에게 functions을 받는 방법을 알려준다.
+#### 이것들이 왜 필요할까?
+: Store 안에 있는 state를 바꿀 수 있는 유일한 방법?\
+=> dispatch를 이용해서 action을 통해 바꿀 수 있다.
+> action은 객체 형식이다.
+
+but, store는 Promise, Functions 형식을 받기도 하기 때문에 문제가 생긴다.
+
+### Reducer
+: 어떻게 state가 변하는가를 보여주고, 변한 마지막 값을 return 해 주는 것.
+> 여러가지 state이 있기 때문에 reducer가 다 나누어져 있다.
+#### combineReducer
+: 이것을 이용해서 Root Reducer에서 여러가지 쪼개져있는 reducer를 한 번에 합쳐준다.
+``` js
+import { combineReducers } from 'redux';
+import user from './user_reducer';
+import comment from './comment';
+
+const rootReducer = combineReducers({
+    user,
+    comment
+})
+```
+
+### 🍯꿀팁
+#### Redux extention
+: Redux DevTools를 사용하려면 코드에다가 넣어주어야한다.
+``` js
+<Provider
+    store={ createStoreWithMiddleware(Reducer,
+      window.__REDUX_DEVTOOLS_EXTENSION__ &&
+      window.__REDUX_DEVTOOLS_EXTENSION__()
+      ) }
+  >
+```

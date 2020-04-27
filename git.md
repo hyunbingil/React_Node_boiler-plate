@@ -1,13 +1,13 @@
 ## GIT 다운받기
-#### 1. 이미 설치 되어있는지 확인\
+#### 1. 이미 설치 되어있는지 확인
 : ```git --version```
-#### 2. git 저장소 만들기\
+#### 2. git 저장소 만들기
 : ```git init```
-#### 3. git의 상태 보기\
-: ```git status```
+#### 3. git의 상태 보기
+: ```git status```\
 1)) 아무것도 안한 상태(working directory)\
 2)) staging area\
-: ```git add``를 하면 이 공간으로 저장이 되는데, 이것은 git에만 있는 개념으로 git repository에 들어가기 전에 대기시켜주는 것.\
+: ```git add```를 하면 이 공간으로 저장이 되는데, 이것은 git에만 있는 개념으로 git repository에 들어가기 전에 대기시켜주는 것.\
 3)) Git repository(LOCAL)\
 : ```git commit```을 하면 저장소에 올라간다.\
 4)) Git repository(REMOTE)\
@@ -43,7 +43,7 @@
 #### 4. SSH private key 추가하기
 : ```$ ssh-add ~/.ssh/id_rsa```
 #### 5. SSH key를 복사하기
-: ```$ clip < ~/.ssh/id_rsa.pub```\
+: ```$ clip < ~/.ssh/id_rsa.pub```
 - 나처럼 bash: clip: command not found 라는 오류가 뜰 경우?\
 : ```cat ~/.ssh/id_rsa.pub```해서 직접 복사하기!
 #### 6. github에 넣어주기
