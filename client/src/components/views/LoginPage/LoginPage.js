@@ -27,7 +27,7 @@ function LoginPage(props) {
         dispatch(loginUser(body))
         .then(response => {
             if(response.payload.loginSuccess) {
-                props.history.push('/')
+                props.history.push("/")
             } else {
                 alert("로그인이 되지 않았습니다.")
             }
